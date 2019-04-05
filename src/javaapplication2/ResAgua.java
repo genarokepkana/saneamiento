@@ -492,35 +492,18 @@ public class ResAgua extends javax.swing.JFrame {
             String nombreRecolector = comboRecolector.getPrototypeDisplayValue();
             String ddRecolector = txtFechaRecolector.getText();
             String mmRecolector = txtFechaRecolector.getText();
-            String aaaaRecolector = txtFechaRecolector.getText();
+            String aaRecolector = txtFechaRecolector.getText();
             String nombreQuimico = labelQuimico.getText();
             String ddQuimico = txtFechaQuimico.getText();
             String mmQuimico = txtFechaQuimico.getText();
-            String aaaaQuimico = txtFechaQuimico.getText();
-            
+            String aaQuimico = txtFechaQuimico.getText();
+            String cadena = "insert into tablaResAgua values (" + lugarMuestreo + tipoMuestra + colif + meso + observaciones + nombreRecolector + ddRecolector + 
+                    mmRecolector + aaRecolector + nombreQuimico + ddQuimico + aaQuimico + ")";
+            System.out.println(cadena);
+            baseIn(cadena);
          
         }
-        
-        
-       
-    
-         //PONER MAÑANA TODOS LAS DEMAS PARTES DE LA TABLA
-        String colifUno;
-        String colifDos;
-        String mesoAeroUno;
-        String mesoAeroDos;
-        String orgColifUno;
-        String orgColifDos;
-        String observaciones;
-        String nomRecolector;
-        String nombreQuim;
-        String ddRecolec;
-        String mmRecolec;
-        String añoRecolec;
-        String ddQuim;
-        String mmquim;
-        String añoQuim;
-        
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtColifUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColifUnoActionPerformed
@@ -629,7 +612,7 @@ public class ResAgua extends javax.swing.JFrame {
         
     }
     
-    public static void baseIn(){
+    public static void baseIn(String comandoSQL){
          String url ="jdbc:sqlserver://localhost\\MSSQLSERVER:1433;databaseName=saneamiento";
         //String url = "jdbc:mysql://localhost:3306/sga?useSSL=false"; esta se usaria si fuera my sql
         //cadena de conexion en sql server Server=localhost;Database=master;Trusted_Connection=True;
@@ -638,14 +621,14 @@ public class ResAgua extends javax.swing.JFrame {
             //Class.forName("com.mysql.jdbc.Driver"); esta se usaria si fuera mySQL workbrench
             Connection conexion = (Connection) DriverManager.getConnection(url,"sa", "123");
             Statement instruccion = conexion.createStatement();
-            String sql = "select id, nombre, apellido from persona";
+            String sql = comandoSQL;
             ResultSet result = instruccion.executeQuery(sql);
-            while(result.next()){
+            /*while(result.next()){
                 System.out.println("id:" + result.getInt(1));
                 System.out.println("nombre: "+ result.getString(2));
                 System.out.println("apellido: " + result.getString(3));
 
-            }
+            }*/
             result.close();
             instruccion.close();
             conexion.close();
