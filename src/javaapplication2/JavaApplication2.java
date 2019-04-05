@@ -21,7 +21,7 @@ public class JavaApplication2 {
        ResAgua agua = new ResAgua();
        agua.setVisible(true);
        
-       
+        System.out.println("El sistema esta actualizando");
        
        
     }
